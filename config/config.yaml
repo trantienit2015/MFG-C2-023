@@ -1,0 +1,11 @@
+# Runtime parameters — loaded by AgentRegistry, passed as Graph(config=...).
+# SEPARATE from config/agent.yaml (the static manifest). See CLAUDE.md §5.
+
+max_retry: 3
+timeout_s: 30
+
+# `llm` is deliberately ABSENT, not null: src/services/llm_resolver.py treats a
+# missing key as "resolve a client from ctx.secrets" and an explicit null as
+# "stay deterministic". Setting null here would permanently disable the LLM.
+#
+# `criteria` overrides DEFAULT_CLASSIFICATION_CRITERIA without a code change.
